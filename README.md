@@ -5,7 +5,7 @@ A "simple" Rust program that shows you a visualization of In-Place Merge Sort,
 
 Unix only. Built on cargo 1.84.0-nightly (031049782 2024-11-01).
 
-Use from the command line like `./mergevis <element count: int> <delay between swaps: double>`.
+Use from the command line like `./no_core_merge_sort <element count: int> <delay between swaps: double>`.
 
 ## Why!?
 
