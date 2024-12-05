@@ -83,7 +83,7 @@ fn start<T>(main: fn() -> T, argc: isize, argv: *const *const u8, sigpipe: u8) -
     }
 
     // Converts the swap delay to a TimeSpec
-    let seconds = unsafe { intrinsics::float_to_int_unchecked::<f64, i32>(swap_delay) };
+    let seconds = unsafe { intrinsics::float_to_int_unchecked::<f64, i64>(swap_delay) };
     let nanos = ((swap_delay - seconds as f64) * 1_000_000_000.0) as i64;
     let timespec = TimeSpec { seconds, nanos };
 
@@ -105,10 +105,11 @@ fn start<T>(main: fn() -> T, argc: isize, argv: *const *const u8, sigpipe: u8) -
         index = index + 1;
     }
 
-    index = 0;
     display_arr(&arr, c"Waiting...\n", Option::None, &TimeSpec { seconds: 1, nanos: 0 });
 
     merge_sort(&mut arr, 0, element_count - 1, &timespec);
+
+    display_arr(&arr, c"Done", Option::None, &TimeSpec { seconds: 0, nanos: 0 });
 
     return 0;
 }

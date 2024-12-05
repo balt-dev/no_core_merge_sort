@@ -120,7 +120,7 @@ trivial_impl! {
     impl Not, for u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize => {
         fn not(self) -> Self { !self }
     }
-    impl Neg, for u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize => {
+    impl Neg, for i8, i16, i32, i64, i128, isize, f32, f64 => {
         fn neg(self) -> Self { -self }
     }
     impl PartialEq, for bool, u8, u16, u32, u64, u128, usize, i8, i16, i32, i64, i128, isize, f32, f64 => {

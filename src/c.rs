@@ -3,11 +3,9 @@
 // Duration definition from POSIX C.
 #[repr(C)]
 pub struct TimeSpec {
-    pub seconds: i32,
+    pub seconds: i64,
     pub nanos: i64
 }
-
-unsafe impl crate::lang_items::Copy for TimeSpec {}
 
 #[link(name = "c")]
 extern "C" {
