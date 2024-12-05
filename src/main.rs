@@ -54,7 +54,7 @@ fn main() {}
 #[lang = "start"]
 fn start<T>(main: fn() -> T, argc: isize, argv: *const *const u8, sigpipe: u8) -> isize {
     if argc < 3 {
-        printf!(c"Usage: ./mergevis <element count: int> <delay: double>\n");
+        printf!(c"Usage: ./no_core_merge_sort <element count: int> <delay: double>\n");
         return -1;
     }
     let ptr_layout = Layout::of::<*const u8>();
