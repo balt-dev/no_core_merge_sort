@@ -3,3 +3,5 @@
 /rust-ice-*
 
 Cargo.lock
+
+no_core_merge_sort
