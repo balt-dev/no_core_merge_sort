@@ -1,5 +1,7 @@
 # `no_core_merge_sort`
 
+[![asciicast](https://asciinema.org/a/JdEL5LSapGrauzEiqGa523Ikk.svg)](https://asciinema.org/a/JdEL5LSapGrauzEiqGa523Ikk)
+
 A "simple" Rust program that shows you a visualization of In-Place Merge Sort,
 **written with `#![no_core]`**.
 
