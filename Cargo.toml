@@ -10,3 +10,6 @@ panic = "abort"
 
 [profile.release]
 panic = "abort"
+opt-level = "z"
+debug = false
+strip = true

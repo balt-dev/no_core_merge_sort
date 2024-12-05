@@ -2,43 +2,6 @@ use crate::lang_items::*;
 use crate::traits::*;
 use crate::intrinsics;
 
-/// A unique pointer to a sized item.
-pub struct Unique<T> {
-    pub inner: *mut T
-}
-
-impl<T> Unique<T> {
-    fn new(value: T) -> Self {
-        // Allocate a pointer and copy the value to it
-        // This doesn't work for !Unpin, but we never define pinning anywhere so :P
-        // TODO: If we ever add interior mutability, fix this!!!
-        let layout = Layout::of::<T>(); // yoinks the size and alignment of the type
-        let ptr = unsafe { layout.alloc() } as *mut T; // uses C11's aligned_alloc (we're linking to c stdlib)
-        unsafe {
-            intrinsics::copy_nonoverlapping(&value, ptr, 1);
-        }
-        intrinsics::forget(value);
-        Self { inner: ptr }
-    }
-}
-
-impl<T> Drop for Unique<T> {
-    fn drop(&mut self) {
-        unsafe {
-            Layout::dealloc(self.inner as *mut ());
-            drop_in_place(self.inner)
-        }
-    }
-}
-
-impl<T> Deref for Unique<T> {
-    type Target = T;
-
-    fn deref(&self) -> &T {
-        unsafe { &*self.inner }
-    }
-}
-
 /// A statically-sized array of copyable values.
 pub struct Array<T: Copy> {
     // storing this is suboptimal but i couldn't get ctfe to work
@@ -92,8 +55,6 @@ impl<T: Copy> Array<T> {
     }
 
     pub fn length(&self) -> usize { self.len }
-
-    pub fn as_ptr(&self) -> *const T { self.inner }
 }
 
 impl<T: Copy> Drop for Array<T> {

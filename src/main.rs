@@ -109,7 +109,7 @@ fn start<T>(main: fn() -> T, argc: isize, argv: *const *const u8, sigpipe: u8) -
 
     merge_sort(&mut arr, 0, element_count - 1, &timespec);
 
-    display_arr(&arr, c"Done", Option::None, &TimeSpec { seconds: 0, nanos: 0 });
+    display_arr(&arr, c"Done\n", Option::None, &TimeSpec { seconds: 0, nanos: 0 });
 
     return 0;
 }
